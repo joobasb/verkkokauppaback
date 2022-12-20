@@ -4,6 +4,18 @@ create database verkkokauppatesti1;
 
 use verkkokauppatesti1;
 
+
+CREATE TABLE user(  
+    id int primary key AUTO_INCREMENT,
+    username VARCHAR(255) UNIQUE NOT NULL,
+    passwd VARCHAR(255) NOT NULL,
+    firstname varchar(50) not null,
+    lastname varchar(50) not null,
+    address varchar(50) not null,
+    zip varchar(10) not null,
+    city varchar(30) not null
+) DEFAULT CHARSET UTF8 COMMENT '';
+
 create table category (
   id int primary key auto_increment,
   name varchar(50) not null
@@ -24,7 +36,7 @@ create table product (
 );
 
 
-create table customer (
+/* create table customer (
   id int primary key AUTO_INCREMENT,
   firstname varchar(50) not null,
   lastname varchar(50) not null,
@@ -32,14 +44,14 @@ create table customer (
   zip varchar(10) not null,
   city varchar(30) not null,
   email varchar(255) not null
-);
+); */
 
 create table `order` (
   id int PRIMARY key AUTO_INCREMENT,
   order_date timestamp default CURRENT_TIMESTAMP,
-  customer_id int not null,
-  index customer_id(customer_id),
-  foreign key (customer_id) references customer(id)
+  user_id int not null,
+  index user_id(user_id),
+  foreign key (user_id) references user(id)
   on delete restrict
 );
 

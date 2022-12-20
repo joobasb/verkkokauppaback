@@ -6,9 +6,16 @@ function openDb(): object {
   $database = $ini['database'];
   $user = $ini['user'];
   $password = $ini['password'];
+  try {
   $db = new PDO("mysql:host=$host;dbname=$database;charset=utf8",$user,$password);
   $db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
   return $db;
+}catch(PDOException $e){
+  http_response_code("505");
+  echo "service is currently unavailable";
+}
+
+return null;
 }
 
 function selectAsJson(object $db,string $sql): void {
