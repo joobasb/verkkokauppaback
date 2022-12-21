@@ -8,6 +8,12 @@ require_once('./functions.php');
 function registerUser($uname, $pw, $firstname, $lastname, $address, $zip, $city) {
     $db = openDb();
 
+    $uname = filter_var($uname, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $firstname = filter_var($firstname, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $lastname = filter_var($lastname, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $address = filter_var($address, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $zip = filter_var($zip, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $city = filter_var($city, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     //encode pw
     $pw = password_hash($pw, PASSWORD_DEFAULT);
 
@@ -33,7 +39,6 @@ function checkUser($uname,$pw){
     }
     return null;
 }
-
 
 /**
  * Getting user info

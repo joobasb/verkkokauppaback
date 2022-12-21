@@ -13,7 +13,8 @@ CREATE TABLE user(
     lastname varchar(50) not null,
     address varchar(50) not null,
     zip varchar(10) not null,
-    city varchar(30) not null
+    city varchar(30) not null,
+    admin BOOLEAN
 ) DEFAULT CHARSET UTF8 COMMENT '';
 
 create table category (
@@ -71,6 +72,8 @@ insert into category (name) values ('Vaaleat oluet');
 insert into category (name) values ('Tummat oluet');
 insert into category (name) values ('Erikoisoluet');
 insert into category (name) values ('Oheistuotteet');
+
+/* insert into user (username, passwd, firstname, lastname, address, zip, city, admin) values ('admin', 'admin', '', '', '', '', '', TRUE); */
 
 insert into product (name, brewery, price, category_id, percent, image, description) values ('PHP-Lager', 'PBC', 4.20, 1, 4.6, '1.png', 'Perinteinen lagerolut, joka on tuotevakimoimamme suosituin!');
 insert into product (name, brewery, price, category_id, percent, image, description) values ('JavascrIPA', 'PBC', 5.00, 1, 6.0, '2.png', 'Voimakkaan humalainen ja raikas IPA olut');
